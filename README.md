@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Orçamento de Granito
 
-## Getting Started
+Aplicação web para cálculo de orçamento de granito, com seleção de material e modelo, regras de cálculo por tipo de frontão/saia e personalização de parâmetros comerciais.
 
-First, run the development server:
+## ✨ Funcionalidades
+
+- Cálculo automático do valor total com atualização em tempo real.
+- Seleção de material e modelo (com imagem ilustrativa).
+- Configuração de medidas (comprimento e largura).
+- Personalização de:
+	- largura da saia;
+	- largura do frontão;
+	- valor do metro de acabamento;
+	- valor do material por m²;
+	- quantidade de grapas;
+	- valor da instalação;
+	- inclusão de cuba.
+- Adição de fecha com controle de quantidade.
+- Botão para copiar mensagem comercial com saudação por horário.
+- Interface responsiva para desktop e mobile.
+
+## 🧱 Stack
+
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- MUI Icons
+
+## 🚀 Como rodar localmente
+
+### Pré-requisitos
+
+- Node.js 18+ (recomendado Node.js 20+)
+- npm
+
+### Instalação
+
+```bash
+npm install
+```
+
+### Ambiente de desenvolvimento
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build de produção
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+### Lint
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run lint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Estrutura principal
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [app/page.tsx](app/page.tsx): tela principal com formulário, UI e integração dos cálculos.
+- [app/src/calculos](app/src/calculos): regras de cálculo separadas por responsabilidade.
+	- [app/src/calculos/base.ts](app/src/calculos/base.ts)
+	- [app/src/calculos/frontao-saia.ts](app/src/calculos/frontao-saia.ts)
+	- [app/src/calculos/adicionais.ts](app/src/calculos/adicionais.ts)
+	- [app/src/calculos/fecha.ts](app/src/calculos/fecha.ts)
+	- [app/src/calculos/total.ts](app/src/calculos/total.ts)
+- [app/src/components](app/src/components): componentes reutilizáveis de interface.
+- [app/src/data/materiais.tsx](app/src/data/materiais.tsx): materiais e preços base.
+- [app/src/data/modelos.tsx](app/src/data/modelos.tsx): modelos e metadados de cálculo.
 
-## Deploy on Vercel
+## 🧮 Regras de cálculo (resumo)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+O valor total considera:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- valor base da chapa (comprimento × largura × valor do material);
+- valor de frontão e saia conforme o modelo selecionado;
+- acabamento por metro linear;
+- adicionais (cuba, furo/colagem, grapas, instalação);
+- fecha (quando ativado).
+
+As regras estão modularizadas para facilitar manutenção e evolução do projeto.
+
+## 📌 Observações
+
+- O projeto foi desenvolvido para apoiar orçamentos rápidos e padronizados.
+- Os valores e parâmetros podem ser ajustados na interface para refletir cenários reais de venda.
+
+---
+
+Feito com Next.js + TypeScript.
