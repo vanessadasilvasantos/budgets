@@ -117,13 +117,13 @@ export default function Home() {
         />
         <Input 
           text="Comprimento" 
-          placeholder="Se não especificado será usado 0,60cm"
+          placeholder="Adicione o comprimento em metros. Ex.: 2,5"
           value={comprimento}
           onChange={setComprimento}
         />
         <Input 
           text="Largura" 
-          placeholder="Adicione a largura aqui"
+          placeholder="Se não especificado será usado 0,60cm"
           value={largura}
           onChange={setLargura}
         />
